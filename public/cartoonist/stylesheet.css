@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Cartoonist JNL';
+    src: url('CartoonistJNL.eot');
+    src: local('Cartoonist JNL'), local('CartoonistJNL'),
+        url('CartoonistJNL.eot?#iefix') format('embedded-opentype'),
+        url('CartoonistJNL.woff2') format('woff2'),
+        url('CartoonistJNL.woff') format('woff'),
+        url('CartoonistJNL.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
