@@ -3,7 +3,8 @@
 import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Tv, TrendingUp, Rocket, Gamepad2, Trophy, Smartphone, Coins, ExternalLink, Info, ArrowRight, Copy, Check, ShieldCheck, Lock, Users, Plus, Minus, Menu, X as CloseIcon } from 'lucide-react'
+import Link from 'next/link'
+import { Tv, TrendingUp, Rocket, Gamepad2, Trophy, Smartphone, Coins, ExternalLink, Info, ArrowRight, Copy, Check, ShieldCheck, Lock, Users, Plus, Minus, Menu, X as CloseIcon, Sparkles, Film, Download, Palette } from 'lucide-react'
 import { Magnetic } from '@/components/ui-patterns/magnetic'
 import { gsap, ScrollTrigger, springConfigs } from '@/lib/gsap'
 
@@ -16,6 +17,7 @@ const TICKER_ITEMS = [
 const NAV_LINKS = [
   { name: 'THE PLAN', href: '#the-plan' },
   { name: 'REWIND CLIMBER', href: '#rewind-climber' },
+  { name: 'REWIND PFP', href: '#rewind-pfp' },
   { name: 'HOW TO BUY', href: '#how-to-buy' },
   { name: 'FAQ', href: '#faq' },
   { name: 'COMMUNITY', href: '#social' },
@@ -863,7 +865,270 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 5: HOW TO BUY $RWD */}
+      {/* SECTION 5: REWIND PFP STUDIO (Tape Studio & Avatar Maker) */}
+      {/* ========================================================================= */}
+      <section 
+        id="rewind-pfp" 
+        className="relative z-20 w-full bg-gradient-to-b from-black via-[#0a0118] to-[#020005] border-t border-purple-950/60 py-20 sm:py-24 md:py-32 overflow-hidden select-none"
+      >
+        {/* Ambient atmospheric lighting */}
+        <div 
+          className="pointer-events-none absolute top-1/2 left-10 -translate-y-1/2 -z-0 h-[480px] w-[480px] rounded-full bg-fuchsia-600/15 blur-[160px]" 
+          aria-hidden="true" 
+        />
+        <div 
+          className="pointer-events-none absolute top-1/3 right-10 -translate-y-1/2 -z-0 h-[500px] w-[500px] rounded-full bg-purple-600/20 blur-[170px]" 
+          aria-hidden="true" 
+        />
+
+        <div className="relative z-10 max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-center">
+            
+            {/* ==================== LEFT COLUMN: PFP COPY & FEATURES & CTA ==================== */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              
+              {/* Section Tag */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-fuchsia-500/40 bg-fuchsia-950/30 text-fuchsia-300 font-mono text-xs uppercase tracking-widest mb-4 w-fit shadow-[0_0_15px_rgba(232,54,220,0.3)]">
+                <span className="h-2 w-2 rounded-full bg-[#ff2da8] animate-pulse" />
+                04 / TAPE STUDIO
+              </div>
+
+              {/* Heading in Morton font */}
+              <div className="mb-5 sm:mb-6">
+                <h2 className="font-morton font-black uppercase tracking-wider text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white select-none neon-text-glow leading-tight">
+                  MAKE YOUR <br />
+                  <span className="text-[#ff2da8]">REWIND PFP.</span>
+                </h2>
+                <div className="h-[2px] w-36 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-transparent mt-3.5" />
+              </div>
+
+              {/* Lede Paragraph in Frygia */}
+              <p className="text-zinc-300 font-frygia text-base sm:text-lg leading-relaxed mb-8 max-w-2xl">
+                Feed it your photo, tune the channel, dial in the tracking — eject a glitched-out VHS avatar built for X, Telegram and Discord. Free creative tool for the whole Rewind Crew.
+              </p>
+
+              {/* 4 Feature Bullet Cards (2x2 Grid) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mb-8 sm:mb-10">
+                
+                {/* 1. PNG Export */}
+                <div className="flex items-start gap-3.5 p-4 rounded-2xl border border-purple-900/50 bg-[#0c0217]/80 backdrop-blur-sm transition-all duration-200 hover:border-fuchsia-500/70 hover:bg-[#140426] hover:shadow-[0_0_20px_rgba(232,54,220,0.2)]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-fuchsia-500/40 bg-fuchsia-500/10 text-fuchsia-400 shrink-0 mt-0.5">
+                    <Download className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-morton font-black text-white text-base uppercase tracking-wide">
+                      PNG Export
+                    </h4>
+                    <p className="font-frygia text-xs sm:text-sm text-zinc-400 leading-snug mt-0.5">
+                      Crisp, high-res export ready to set as your profile avatar on X.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 2. Animated GIF Export */}
+                <div className="flex items-start gap-3.5 p-4 rounded-2xl border border-purple-900/50 bg-[#0c0217]/80 backdrop-blur-sm transition-all duration-200 hover:border-[#38c7bc]/70 hover:bg-[#140426] hover:shadow-[0_0_20px_rgba(56,199,188,0.2)]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#38c7bc]/40 bg-[#38c7bc]/10 text-[#38c7bc] shrink-0 mt-0.5">
+                    <Film className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-morton font-black text-white text-base uppercase tracking-wide">
+                      Animated GIF Export
+                    </h4>
+                    <p className="font-frygia text-xs sm:text-sm text-zinc-400 leading-snug mt-0.5">
+                      Dynamic VHS glitch frames optimized for Telegram & Discord.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. 5 Channel Tints */}
+                <div className="flex items-start gap-3.5 p-4 rounded-2xl border border-purple-900/50 bg-[#0c0217]/80 backdrop-blur-sm transition-all duration-200 hover:border-amber-500/70 hover:bg-[#140426] hover:shadow-[0_0_20px_rgba(244,123,33,0.2)]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-400 shrink-0 mt-0.5">
+                    <Palette className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-morton font-black text-white text-base uppercase tracking-wide">
+                      5 Channel Tints
+                    </h4>
+                    <p className="font-frygia text-xs sm:text-sm text-zinc-400 leading-snug mt-0.5">
+                      Original color retention, Static Blu, Phosphor Grn, Amb & Magenta.
+                    </p>
+                  </div>
+                </div>
+
+                {/* 4. 100% Private */}
+                <div className="flex items-start gap-3.5 p-4 rounded-2xl border border-purple-900/50 bg-[#0c0217]/80 backdrop-blur-sm transition-all duration-200 hover:border-emerald-500/70 hover:bg-[#140426] hover:shadow-[0_0_20px_rgba(52,211,153,0.2)]">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 shrink-0 mt-0.5">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-morton font-black text-white text-base uppercase tracking-wide">
+                      100% Private
+                    </h4>
+                    <p className="font-frygia text-xs sm:text-sm text-zinc-400 leading-snug mt-0.5">
+                      Client-side canvas engine — your photo never leaves your browser.
+                    </p>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Magnetic CTA Button to /pfp */}
+              <div>
+                <Magnetic strength={0.3} className="inline-block">
+                  <Link
+                    href="/pfp"
+                    className="group relative inline-flex items-center justify-center p-[2px] rounded-none overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 focus-visible:outline-none"
+                  >
+                    {/* Rotating Neon Laser Border */}
+                    <div
+                      className="absolute -inset-[200%] animate-spin-neon pointer-events-none"
+                      style={{
+                        background: 'conic-gradient(from 0deg, transparent 0deg, transparent 200deg, #ff2da8 250deg, #d946ef 290deg, #38c7bc 330deg, #ffffff 350deg, #ff2da8 360deg)',
+                      }}
+                      aria-hidden="true"
+                    />
+
+                    {/* Secondary Glow Layer */}
+                    <div
+                      className="absolute -inset-[200%] animate-spin-neon pointer-events-none blur-md opacity-80"
+                      style={{
+                        background: 'conic-gradient(from 0deg, transparent 0deg, transparent 180deg, #e836dc 240deg, #c026d3 280deg, #38c7bc 330deg, #ffffff 350deg, #ff2da8 360deg)',
+                      }}
+                      aria-hidden="true"
+                    />
+
+                    {/* Static Ambient Neon Purple Border Fallback */}
+                    <div className="absolute inset-0 border border-fuchsia-500/50 rounded-none pointer-events-none" />
+
+                    {/* Inner Button Body */}
+                    <div className="relative z-10 rounded-none bg-[#090111] px-8 sm:px-11 py-4 sm:py-4.5 flex items-center justify-center gap-2.5 overflow-hidden transition-all duration-300 group-hover:bg-[#160228]">
+                      
+                      {/* Subtle hover neon background shimmer */}
+                      <div 
+                        className="absolute inset-0 bg-gradient-to-r from-fuchsia-600/25 via-purple-500/30 to-fuchsia-600/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
+                        aria-hidden="true"
+                      />
+
+                      {/* Button Text in Frygia */}
+                      <span className="relative z-10 font-frygia font-black text-sm sm:text-base tracking-widest uppercase text-white group-hover:text-fuchsia-100 drop-shadow-[0_0_10px_rgba(232,54,220,0.8)] transition-colors duration-300 flex items-center gap-2">
+                        OPEN THE PFP GENERATOR
+                        <ExternalLink className="h-4 w-4 text-fuchsia-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                      </span>
+                    </div>
+                  </Link>
+                </Magnetic>
+              </div>
+
+            </div>
+
+            {/* ==================== RIGHT COLUMN: INTERACTIVE RETRO TV MOCKUP ==================== */}
+            <div className="lg:col-span-5 flex justify-center items-center w-full">
+              <Link 
+                href="/pfp" 
+                className="group relative w-full max-w-[500px] flex flex-col items-center cursor-pointer block"
+                title="Launch Rewind My PFP Generator"
+              >
+                
+                {/* Glow behind TV frame */}
+                <div 
+                  className="pointer-events-none absolute -inset-3 bg-gradient-to-tr from-fuchsia-600/30 via-purple-600/30 to-[#38c7bc]/30 blur-2xl rounded-3xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" 
+                  aria-hidden="true" 
+                />
+
+                {/* Character Combo Header Overlay */}
+                <div className="relative -mb-6 z-20 flex items-end justify-center gap-3">
+                  <div className="relative w-20 sm:w-24 -rotate-6 transform transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-12">
+                    <Image
+                      src="/characters/kid-fist.png"
+                      alt="Rewind Kid"
+                      width={120}
+                      height={120}
+                      className="w-full h-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
+                    />
+                  </div>
+                  <div className="relative w-16 sm:w-20 rotate-12 transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    <Image
+                      src="/characters/vhs-tape.png"
+                      alt="VHS Tape"
+                      width={100}
+                      height={100}
+                      className="w-full h-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]"
+                    />
+                  </div>
+                </div>
+
+                {/* Main TV Frame Container */}
+                <div className="relative w-full rounded-3xl border-2 border-purple-800/70 bg-gradient-to-br from-[#1b0a2c] via-[#10021c] to-[#08010e] p-5 sm:p-7 backdrop-blur-md shadow-[0_0_40px_rgba(232,54,220,0.35)] transition-all duration-500 group-hover:border-fuchsia-500 group-hover:shadow-[0_0_55px_rgba(232,54,220,0.6)]">
+                  
+                  {/* Top LED Indicator */}
+                  <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-widest text-zinc-400 mb-3 px-1">
+                    <span className="flex items-center gap-2 text-fuchsia-400 font-bold">
+                      <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] animate-pulse" />
+                      CH.78 ONLINE
+                    </span>
+                    <span className="text-zinc-500">VHS TAPE DECK</span>
+                  </div>
+
+                  {/* Inner CRT Glitch Screen */}
+                  <div className="relative aspect-[4/3] rounded-2xl bg-black overflow-hidden border border-purple-900/60 flex flex-col justify-between p-4 shadow-inner">
+                    
+                    {/* Retro Scanlines */}
+                    <div 
+                      className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.4)_50%)] bg-[length:100%_4px] opacity-40 z-10" 
+                      aria-hidden="true" 
+                    />
+
+                    {/* Ambient Glow & Glitch noise background */}
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-tr from-fuchsia-950/60 via-purple-950/40 to-[#0c0217] opacity-80" 
+                      aria-hidden="true" 
+                    />
+
+                    {/* CRT OSD Top Info */}
+                    <div className="relative z-20 flex items-center justify-between font-mono text-xs font-bold text-[#f6f0df] drop-shadow-[0_0_8px_rgba(232,54,220,0.8)]">
+                      <span>◀◀ REW &nbsp; ×2</span>
+                      <span>SP &nbsp; 00:22:14</span>
+                    </div>
+
+                    {/* Big Center Title in CRT */}
+                    <div className="relative z-20 flex flex-col items-center justify-center text-center my-auto py-4">
+                      <span className="font-morton font-black uppercase tracking-wider text-3xl sm:text-4xl text-white neon-text-glow leading-none">
+                        REWIND <br />
+                        <span className="text-[#ff2da8]">MY PFP</span>
+                      </span>
+                      <span className="font-mono text-[11px] uppercase tracking-widest text-zinc-400 mt-2">
+                        TAP TO CUSTOMIZE ↗
+                      </span>
+                    </div>
+
+                    {/* Bottom Channel Dots */}
+                    <div className="relative z-20 flex items-center justify-center gap-2 pt-2 border-t border-purple-900/40">
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#ff2da8] shadow-[0_0_8px_#ff2da8]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#38c7bc] shadow-[0_0_8px_#38c7bc]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#f47b21] shadow-[0_0_8px_#f47b21]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#22a866] shadow-[0_0_8px_#22a866]" />
+                    </div>
+
+                  </div>
+
+                  {/* Bottom Action Pill */}
+                  <div className="mt-4 flex items-center justify-center">
+                    <span className="px-5 py-2 rounded-xl bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white font-frygia font-bold text-xs uppercase tracking-widest shadow-[0_0_15px_rgba(232,54,220,0.4)] group-hover:scale-105 transition-transform duration-200 flex items-center gap-1.5">
+                      Launch PFP Studio ↗
+                    </span>
+                  </div>
+
+                </div>
+
+              </Link>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 6: HOW TO BUY $RWD */}
       {/* ========================================================================= */}
       <section 
         id="how-to-buy" 
@@ -1126,7 +1391,7 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 6: THE FAIR LAUNCH PLEDGE & FAQ (Pledge Left | FAQ Right) */}
+      {/* SECTION 7: THE FAIR LAUNCH PLEDGE & FAQ (Pledge Left | FAQ Right) */}
       {/* ========================================================================= */}
       <section 
         id="faq" 
@@ -1283,7 +1548,7 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 7: SOCIAL SECTION (Left: X & Telegram Cards | Right: Big Kid Image) */}
+      {/* SECTION 8: SOCIAL SECTION (Left: X & Telegram Cards | Right: Big Kid Image) */}
       {/* ========================================================================= */}
       <section 
         id="social" 
