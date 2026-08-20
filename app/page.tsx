@@ -55,7 +55,7 @@ const HTB_STEPS = [
     description: "You're in. Welcome to the rewind!",
     image: '/htb/rewind-logo.png',
     alt: '$RWD Rewind Logo',
-    glowClass: 'border-[#ff2da8] shadow-[0_0_35px_rgba(255,45,168,0.8)]',
+    glowClass: 'border-fuchsia-500/80 shadow-[0_0_25px_rgba(232,54,220,0.5)]',
   },
 ]
 
@@ -1314,12 +1314,9 @@ export default function Home() {
               {/* ================= STEP 4: $RWD (FINAL DESTINATION) ================= */}
               <div className="relative flex flex-col items-center text-center group">
                 
-                {/* Circle Container with Intense Pulsing Halo Border */}
+                {/* Circle Container */}
                 <div className="relative mb-6">
-                  {/* Concentric subtle outer aura ring */}
-                  <div className="absolute -inset-2.5 rounded-full border border-fuchsia-500/30 animate-pulse pointer-events-none" />
-                  
-                  <div className="relative flex h-36 w-36 sm:h-40 sm:w-40 xl:h-48 xl:w-48 items-center justify-center rounded-full border-[3.5px] border-[#ff2da8] bg-black shadow-[0_0_35px_rgba(255,45,168,0.95),0_0_15px_rgba(217,70,239,0.8)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_0_50px_rgba(255,45,168,1)]">
+                  <div className="relative flex h-36 w-36 sm:h-40 sm:w-40 xl:h-48 xl:w-48 items-center justify-center rounded-full border-[2.5px] border-[#d946ef] bg-black shadow-[0_0_25px_rgba(217,70,239,0.65)] transition-all duration-300 group-hover:scale-105 group-hover:border-[#ff2da8] group-hover:shadow-[0_0_35px_rgba(255,45,168,0.85)]">
                     <div className="relative h-20 w-20 sm:h-24 sm:w-24 xl:h-28 xl:w-28 flex items-center justify-center">
                       <Image
                         src="/htb/rewind-logo.png"
