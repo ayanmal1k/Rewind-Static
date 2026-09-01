@@ -4,9 +4,10 @@ import { useRef, useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { Tv, TrendingUp, Rocket, Gamepad2, Trophy, Smartphone, Coins, ExternalLink, Info, ArrowRight, Copy, Check, ShieldCheck, Lock, Users, Plus, Minus, Menu, X as CloseIcon, Sparkles, Film, Download, Palette } from 'lucide-react'
+import { Tv, TrendingUp, Rocket, Gamepad2, Trophy, Smartphone, Coins, ExternalLink, Info, ArrowRight, Copy, Check, ShieldCheck, Lock, Users, Plus, Minus, Menu, X as CloseIcon, Sparkles, Film, Download, Palette, Swords, Flame, Zap } from 'lucide-react'
 import { Magnetic } from '@/components/ui-patterns/magnetic'
 import { gsap, ScrollTrigger, springConfigs } from '@/lib/gsap'
+import { GameCdCard, GameData } from '@/components/game-cd-card'
 
 const TICKER_ITEMS = [
   'WATCH CARTOONS',
@@ -16,11 +17,52 @@ const TICKER_ITEMS = [
 
 const NAV_LINKS = [
   { name: 'THE PLAN', href: '#the-plan' },
-  { name: 'REWIND CLIMBER', href: '#rewind-climber' },
+  { name: 'REWIND GAMES', href: '#rewind-games' },
   { name: 'REWIND PFP', href: '#rewind-pfp' },
   { name: 'HOW TO BUY', href: '#how-to-buy' },
   { name: 'FAQ', href: '#faq' },
   { name: 'COMMUNITY', href: '#social' },
+]
+
+const GAMES_DATA: GameData[] = [
+  {
+    id: 'rewind-climber',
+    title: 'REWIND CLIMBER',
+    subtitle: 'P2E Climber Game',
+    genre: 'Retro Pixel Platformer',
+    tagline: 'Dodge the drop, grab the combo, chase the high score.',
+    description: 'Jump your way up through the halls of Rewind High — dodge obstacles, chain combos, climb the live global leaderboard, and exchange your in-game coins for $RWD tokens.',
+    cdImage: '/game-cd/rewind climber.png',
+    url: 'https://rewindrwdgames.netlify.app',
+    badge: 'P2E PLATFORMER',
+    discNumber: 'DISC 01',
+    accentColor: 'fuchsia',
+    highlights: [
+      { icon: Gamepad2, label: 'Instant In-Browser Play' },
+      { icon: Trophy, label: 'Live Global Leaderboard' },
+      { icon: Coins, label: 'Exchange Coins for $RWD' },
+      { icon: Zap, label: 'Solo High Score Platformer' },
+    ],
+  },
+  {
+    id: 'rewind-rumble',
+    title: 'REWIND RUMBLE',
+    subtitle: 'P2E PVP Realtime Multiplayer Fighter',
+    genre: 'Realtime PVP Arcade Fighting',
+    tagline: 'Real-time 1v1 combat, special moves, and $RWD bounties.',
+    description: 'Step into the 90s fighting arena against live opponents! Unleash dynamic combos, master counter-attacks, KO rivals in real-time PVP brawls, and withdraw your earned $RWD tokens.',
+    cdImage: '/game-cd/rewind rumble.png',
+    url: 'https://rewindrwdgames.netlify.app/rumble',
+    badge: 'PVP MULTIPLAYER',
+    discNumber: 'DISC 02',
+    accentColor: 'cyan',
+    highlights: [
+      { icon: Swords, label: 'Real-Time PVP Multiplayer' },
+      { icon: Flame, label: 'Fast Combos & Special KOs' },
+      { icon: Coins, label: 'Earn & Withdraw $RWD' },
+      { icon: Users, label: 'Instant Room Matchmaking' },
+    ],
+  },
 ]
 
 const HTB_STEPS = [
@@ -97,18 +139,18 @@ const FAQ_ITEMS = [
     a: (
       <>
         Only from this website, our pinned post on{' '}
-        <a 
-          href="https://x.com/RewindStatic78" 
-          target="_blank" 
+        <a
+          href="https://x.com/RewindStatic78"
+          target="_blank"
           rel="noopener noreferrer"
           className="text-[#ff2da8] font-bold underline decoration-[#ff2da8]/60 hover:text-white transition-colors"
         >
           X
         </a>
         , or our official{' '}
-        <a 
-          href="https://t.me/RewindStatic" 
-          target="_blank" 
+        <a
+          href="https://t.me/RewindStatic"
+          target="_blank"
           rel="noopener noreferrer"
           className="text-[#ff2da8] font-bold underline decoration-[#ff2da8]/60 hover:text-white transition-colors"
         >
@@ -169,13 +211,13 @@ export default function Home() {
 
   return (
     <main ref={containerRef} className="relative w-full bg-black text-white selection:bg-fuchsia-600 selection:text-white">
-      
+
       {/* ========================================================================= */}
       {/* NAVBAR (Relative above Hero on Mobile, Fixed on PC / Desktop) */}
       {/* ========================================================================= */}
       <header className="relative md:fixed top-0 left-0 right-0 z-50 w-full bg-black/90 md:bg-black/80 backdrop-blur-xl border-b border-purple-900/40 transition-all duration-300 select-none">
         <div className="max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 h-16 sm:h-20 md:h-24 flex items-center justify-between">
-          
+
           {/* Logo on Left */}
           <a href="#" className="flex items-center gap-3 group py-1.5 md:py-2">
             <Image
@@ -220,13 +262,13 @@ export default function Home() {
           {mobileMenuOpen && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
-              animate={{ 
-                height: 'auto', 
+              animate={{
+                height: 'auto',
                 opacity: 1,
                 transition: { height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] }, opacity: { duration: 0.2 } }
               }}
-              exit={{ 
-                height: 0, 
+              exit={{
+                height: 0,
                 opacity: 0,
                 transition: { height: { duration: 0.25, ease: [0.04, 0.62, 0.23, 0.98] }, opacity: { duration: 0.15 } }
               }}
@@ -248,12 +290,12 @@ export default function Home() {
           )}
         </AnimatePresence>
       </header>
-      
+
       {/* ========================================================================= */}
       {/* SECTION 1: HERO SECTION (Dedicated min-h-screen with scoped background) */}
       {/* ========================================================================= */}
       <section id="hero-section" className="relative min-h-screen w-full overflow-hidden bg-black text-white flex flex-col justify-center select-none">
-        
+
         {/* Desktop Background (Landscape with TV on left) - Scoped strictly to Hero */}
         <div className="hero-bg-parallax absolute inset-0 hidden md:block z-0 pointer-events-none">
           <Image
@@ -281,23 +323,23 @@ export default function Home() {
         </div>
 
         {/* Subtle retro vignette overlay */}
-        <div 
+        <div
           className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_at_center,transparent_60%,rgba(0,0,0,0.4)_100%)] opacity-70"
           aria-hidden="true"
         />
 
         {/* HERO CONTENT CONTAINER */}
         <div className="relative z-10 w-full min-h-screen flex flex-col justify-start md:justify-center px-4 sm:px-6 md:px-10 lg:px-14 pt-4 sm:pt-8 md:pt-0 pb-0">
-          
+
           {/* Main Grid: Left is empty for TV on desktop; Right contains the Hero Content */}
           <div className="grid grid-cols-1 md:grid-cols-12 w-full max-w-7xl mx-auto items-center">
-            
+
             {/* Left Column (Desktop Spacer: allows the background TV to show clearly) */}
             <div className="hidden md:block md:col-span-6 lg:col-span-6 pointer-events-none" />
 
             {/* Right Column (Hero Content: Shifted up on mobile, Scaled 20% Bigger) */}
             <div className="col-span-1 md:col-span-6 lg:col-span-6 flex flex-col items-center justify-center text-center -translate-y-4 xs:-translate-y-6 sm:-translate-y-8 md:translate-y-0 pt-2 sm:pt-4 md:pt-0 pb-20 md:pb-0 transform scale-105 xs:scale-110 md:scale-120 origin-top md:origin-center">
-              
+
               {/* 1. HERO-TEXT LOGO IMAGE */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -368,15 +410,15 @@ export default function Home() {
 
                     {/* Sharp Rectangular Button Inner Body */}
                     <div className="relative z-10 rounded-none bg-[#090111] px-10 sm:px-12 py-3.5 sm:py-4 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:bg-[#150226]">
-                      
+
                       {/* Subtle inner hover neon sheen */}
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-pink-500/30 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
+                      <div
+                        className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-pink-500/30 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                         aria-hidden="true"
                       />
 
                       {/* Light sweep gleam on hover */}
-                      <div 
+                      <div
                         className="absolute inset-0 overflow-hidden pointer-events-none"
                         aria-hidden="true"
                       >
@@ -401,9 +443,9 @@ export default function Home() {
       {/* CONTINUOUS NEON LIGHTED TICKER / MARQUEE */}
       {/* ========================================================================= */}
       <div className="relative z-20 w-full overflow-hidden bg-[#0a0014] border-y-2 border-fuchsia-500/40 py-3.5 sm:py-4.5 shadow-[0_0_25px_rgba(232,54,220,0.35)] select-none">
-        
+
         {/* Soft neon backdrop gradient line */}
-        <div 
+        <div
           className="absolute inset-0 bg-gradient-to-r from-transparent via-fuchsia-600/10 to-transparent pointer-events-none"
           aria-hidden="true"
         />
@@ -430,25 +472,25 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* SECTION 2: REMEMBER WHEN LIFE WAS SIMPLE? */}
       {/* ========================================================================= */}
-      <section 
-        id="nostalgia" 
+      <section
+        id="nostalgia"
         className="relative z-20 w-full bg-gradient-to-b from-[#06000c] via-[#090114] to-[#040008] py-16 sm:py-20 md:py-24 overflow-hidden"
       >
         {/* Background ambient lighting */}
-        <div 
-          className="pointer-events-none absolute top-1/2 left-10 -translate-y-1/2 -z-0 h-[450px] w-[450px] rounded-full bg-fuchsia-600/10 blur-[140px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/2 left-10 -translate-y-1/2 -z-0 h-[450px] w-[450px] rounded-full bg-fuchsia-600/10 blur-[140px]"
+          aria-hidden="true"
         />
-        <div 
-          className="pointer-events-none absolute top-1/2 right-10 -translate-y-1/2 -z-0 h-[550px] w-[550px] rounded-full bg-purple-600/15 blur-[150px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/2 right-10 -translate-y-1/2 -z-0 h-[550px] w-[550px] rounded-full bg-purple-600/15 blur-[150px]"
+          aria-hidden="true"
         />
 
         <div className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-               {/* Left Column: Heading, Wide Story Copy, and Big Neon Icons */}
+            {/* Left Column: Heading, Wide Story Copy, and Big Neon Icons */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              
+
               {/* Heading in Morton Font (Clean White with Neon Glow) */}
               <div className="mb-6 sm:mb-8">
                 <h2 className="font-morton font-black uppercase tracking-wider text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white leading-none select-none neon-text-glow">
@@ -510,26 +552,26 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* SECTION 3: THE PLAN */}
       {/* ========================================================================= */}
-      <section 
-        id="the-plan" 
+      <section
+        id="the-plan"
         className="relative z-20 w-full bg-gradient-to-b from-[#040008] via-[#090114] to-[#020005] border-t border-purple-950/60 py-16 sm:py-20 md:py-24 overflow-hidden select-none"
       >
         {/* Ambient atmospheric backdrop glows */}
-        <div 
-          className="pointer-events-none absolute top-1/3 left-1/4 -translate-y-1/2 -z-0 h-[450px] w-[450px] rounded-full bg-fuchsia-600/10 blur-[150px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/3 left-1/4 -translate-y-1/2 -z-0 h-[450px] w-[450px] rounded-full bg-fuchsia-600/10 blur-[150px]"
+          aria-hidden="true"
         />
-        <div 
-          className="pointer-events-none absolute bottom-1/4 right-10 -z-0 h-[500px] w-[500px] rounded-full bg-purple-600/15 blur-[160px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute bottom-1/4 right-10 -z-0 h-[500px] w-[500px] rounded-full bg-purple-600/15 blur-[160px]"
+          aria-hidden="true"
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
+
             {/* ==================== LEFT COLUMN: VERTICAL 3 STEPS ==================== */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              
+
               {/* Section Header */}
               <div className="mb-8 sm:mb-10">
                 <div className="flex items-center gap-3 sm:gap-4">
@@ -538,7 +580,7 @@ export default function Home() {
                   </h2>
                   <div className="h-[2px] flex-1 bg-gradient-to-r from-fuchsia-500/60 via-purple-500/30 to-transparent" />
                 </div>
-                
+
                 <p className="mt-2 text-zinc-400 font-frygia text-sm sm:text-base">
                   Three simple steps to rewind back to the golden age and blast off.
                 </p>
@@ -546,16 +588,16 @@ export default function Home() {
 
               {/* Vertical Steps List with Connected Line */}
               <div className="relative flex flex-col space-y-5 sm:space-y-6">
-                
+
                 {/* Vertical neon connector line */}
-                <div 
-                  className="absolute left-7 sm:left-8 top-8 bottom-8 w-[2px] bg-gradient-to-b from-fuchsia-500 via-purple-500 to-pink-500 opacity-30 pointer-events-none" 
+                <div
+                  className="absolute left-7 sm:left-8 top-8 bottom-8 w-[2px] bg-gradient-to-b from-fuchsia-500 via-purple-500 to-pink-500 opacity-30 pointer-events-none"
                   aria-hidden="true"
                 />
 
                 {/* ---------------- STEP 1: WATCH CARTOON ---------------- */}
                 <div className="group relative flex items-start gap-4 sm:gap-6 rounded-2xl border border-purple-900/50 bg-[#0c0217]/85 p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:border-[#e836dc] hover:bg-[#130325] hover:shadow-[0_0_30px_rgba(232,54,220,0.25)] hover:-translate-y-1">
-                  
+
                   {/* Left Icon + Number Badge */}
                   <div className="relative flex-shrink-0 flex items-center justify-center">
                     <div className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl border border-fuchsia-500/50 bg-gradient-to-br from-fuchsia-950/80 to-[#120020] text-fuchsia-400 shadow-[0_0_16px_rgba(232,54,220,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:border-fuchsia-400 group-hover:text-white group-hover:shadow-[0_0_24px_rgba(232,54,220,0.6)]">
@@ -584,7 +626,7 @@ export default function Home() {
 
                 {/* ---------------- STEP 2: CHART GO UP ---------------- */}
                 <div className="group relative flex items-start gap-4 sm:gap-6 rounded-2xl border border-purple-900/50 bg-[#0c0217]/85 p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:border-emerald-500/80 hover:bg-[#130325] hover:shadow-[0_0_30px_rgba(52,211,153,0.25)] hover:-translate-y-1">
-                  
+
                   {/* Left Icon + Number Badge */}
                   <div className="relative flex-shrink-0 flex items-center justify-center">
                     <div className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl border border-emerald-500/50 bg-gradient-to-br from-emerald-950/80 to-[#120020] text-emerald-400 shadow-[0_0_16px_rgba(52,211,153,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:border-emerald-400 group-hover:text-white group-hover:shadow-[0_0_24px_rgba(52,211,153,0.6)]">
@@ -613,7 +655,7 @@ export default function Home() {
 
                 {/* ---------------- STEP 3: SEND IT ---------------- */}
                 <div className="group relative flex items-start gap-4 sm:gap-6 rounded-2xl border border-purple-900/50 bg-[#0c0217]/85 p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:border-pink-500/80 hover:bg-[#130325] hover:shadow-[0_0_30px_rgba(244,114,182,0.25)] hover:-translate-y-1">
-                  
+
                   {/* Left Icon + Number Badge */}
                   <div className="relative flex-shrink-0 flex items-center justify-center">
                     <div className="flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-2xl border border-pink-500/50 bg-gradient-to-br from-pink-950/80 to-[#120020] text-pink-400 shadow-[0_0_16px_rgba(244,114,182,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:border-pink-400 group-hover:text-white group-hover:shadow-[0_0_24px_rgba(244,114,182,0.6)]">
@@ -646,11 +688,11 @@ export default function Home() {
             {/* ==================== RIGHT COLUMN: BIG ANIMATED TV GIF ==================== */}
             <div className="lg:col-span-5 flex justify-center items-center w-full">
               <div className="relative w-full max-w-[480px] sm:max-w-[540px] lg:max-w-none flex items-center justify-center">
-                
+
                 {/* Intense Ambient Glow behind the TV */}
-                <div 
+                <div
                   className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-tr from-fuchsia-600/30 via-purple-600/25 to-pink-500/25 blur-[90px] rounded-full transform scale-90"
-                  aria-hidden="true" 
+                  aria-hidden="true"
                 />
 
                 {/* TV GIF Container with Retro Styling & Glow */}
@@ -674,219 +716,99 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* SECTION 4: PLAY REWINDCLIMBER (Image Left | Details & CTA Right) */}
+      {/* SECTION 4: REWIND STATIC GAMES (Compact Dual Retro CD Arcade Showcase) */}
       {/* ========================================================================= */}
-      <section 
-        id="rewind-climber" 
-        className="relative z-20 w-full bg-gradient-to-b from-[#020005] via-[#080112] to-black border-t border-purple-950/60 py-16 sm:py-20 md:py-28 overflow-hidden select-none"
+      <section
+        id="rewind-games"
+        className="relative z-20 w-full bg-gradient-to-b from-[#020005] via-[#080112] to-black border-t border-purple-950/60 py-10 sm:py-14 lg:py-16 overflow-hidden select-none"
       >
+        {/* Alias anchor for old/external links targeting #rewind-climber */}
+        <div id="rewind-climber" className="absolute -top-24 pointer-events-none" aria-hidden="true" />
+
         {/* Ambient atmospheric glows */}
-        <div 
-          className="pointer-events-none absolute top-1/2 left-10 -translate-y-1/2 -z-0 h-[450px] w-[450px] rounded-full bg-fuchsia-600/10 blur-[150px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/2 left-10 -translate-y-1/2 -z-0 h-[380px] w-[380px] rounded-full bg-fuchsia-600/10 blur-[130px]"
+          aria-hidden="true"
         />
-        <div 
-          className="pointer-events-none absolute top-1/3 right-10 -translate-y-1/2 -z-0 h-[500px] w-[500px] rounded-full bg-purple-600/15 blur-[160px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/2 right-10 -translate-y-1/2 -z-0 h-[400px] w-[400px] rounded-full bg-cyan-600/10 blur-[140px]"
+          aria-hidden="true"
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-14">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
-            {/* ==================== LEFT COLUMN: GAME IMAGE ==================== */}
-            <div className="game-arcade lg:col-span-6 flex justify-center items-center w-full">
-              <div className="relative w-full max-w-[580px] group">
-                
-                {/* Glow behind frame */}
-                <div 
-                  className="pointer-events-none absolute -inset-2 bg-gradient-to-r from-fuchsia-600/30 via-purple-600/30 to-pink-500/30 blur-2xl rounded-3xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" 
-                  aria-hidden="true"
-                />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
 
-                {/* Retro Arcade Container */}
-                <div className="relative rounded-2xl sm:rounded-3xl border-2 border-purple-800/60 bg-[#0c0217]/90 p-2.5 sm:p-3.5 backdrop-blur-md shadow-[0_0_35px_rgba(232,54,220,0.3)] transition-all duration-500 group-hover:border-fuchsia-500 group-hover:shadow-[0_0_50px_rgba(232,54,220,0.5)]">
-                  
-                  {/* Arcade Header Bar */}
-                  <div className="flex items-center justify-between px-3 py-2 border-b border-purple-900/50 mb-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className="h-2.5 w-2.5 rounded-full bg-rose-500" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-amber-500" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
-                    </div>
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-fuchsia-400 font-semibold">
-                      REWIND HIGH • v1.0
-                    </span>
-                  </div>
+          {/* Section Header (Compact) */}
+          <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-8 sm:mb-10">
 
-                  {/* Main Image */}
-                  <div className="relative overflow-hidden rounded-xl bg-black">
-                    <Image
-                      src="/game.png"
-                      alt="Rewind Climber Arcade Game"
-                      width={720}
-                      height={460}
-                      priority
-                      className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
-                    />
+            {/* Top Arcade Tag */}
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-fuchsia-500/40 bg-fuchsia-500/10 text-fuchsia-300 font-frygia text-xs font-black uppercase tracking-widest mb-2.5 shadow-[0_0_12px_rgba(232,54,220,0.25)]">
+              <Sparkles className="h-3.5 w-3.5 text-fuchsia-400 animate-pulse" />
+              <span>90S CD-ROM ARCADE • PLAY-TO-EARN ON SOLANA</span>
+              <Sparkles className="h-3.5 w-3.5 text-fuchsia-400 animate-pulse" />
+            </div> */}
 
-                    {/* Subtle Scanline Overlay */}
-                    <div 
-                      className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.35)_50%)] bg-[length:100%_4px] opacity-30" 
-                      aria-hidden="true" 
-                    />
-                  </div>
-                </div>
+            <h2 className="font-morton font-black uppercase tracking-wider text-3xl sm:text-4xl lg:text-5xl text-white select-none neon-text-glow leading-tight">
+              REWIND STATIC GAMES
+            </h2>
+            <div className="h-[2px] w-28 bg-gradient-to-r from-transparent via-fuchsia-500 to-transparent mt-2 mb-2.5" />
 
-              </div>
-            </div>
-
-            {/* ==================== RIGHT COLUMN: TEXT & CTA ==================== */}
-            <div className="game-info lg:col-span-6 flex flex-col justify-center">
-              
-              {/* Heading in Morton font */}
-              <div className="mb-5 sm:mb-6">
-                <h2 className="font-morton font-black uppercase tracking-wider text-4xl sm:text-5xl lg:text-6xl text-white select-none neon-text-glow leading-tight">
-                  PLAY REWINDCLIMBER.
-                </h2>
-                <div className="h-[2px] w-32 bg-gradient-to-r from-fuchsia-500 via-pink-500 to-transparent mt-3" />
-              </div>
-
-              {/* Hook Paragraph in Frygia font */}
-              <p className="text-zinc-300 font-frygia text-base sm:text-lg leading-relaxed mb-6 sm:mb-7">
-                Jump your way up through the halls of Rewind High — dodge the drop, grab the combo, chase the high score. A free pixel-platformer for the whole Rewind Crew, no download, no wallet, just vibes.
-              </p>
-
-              {/* 4 Feature Bullet Cards (2x2 Grid) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5 mb-7 sm:mb-8">
-                
-                {/* 1. In Browser */}
-                <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl border border-purple-900/50 bg-[#0c0217]/70 backdrop-blur-sm transition-all duration-200 hover:border-fuchsia-500/60 hover:bg-[#140426]">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-fuchsia-500/40 bg-fuchsia-500/10 text-fuchsia-400 shrink-0">
-                    <Gamepad2 className="h-4.5 w-4.5" />
-                  </div>
-                  <span className="font-frygia text-xs sm:text-sm text-zinc-200 leading-snug">
-                    Right in your browser, opens in a new tab
-                  </span>
-                </div>
-
-                {/* 2. Live Leaderboard */}
-                <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl border border-purple-900/50 bg-[#0c0217]/70 backdrop-blur-sm transition-all duration-200 hover:border-amber-500/60 hover:bg-[#140426]">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-amber-500/40 bg-amber-500/10 text-amber-400 shrink-0">
-                    <Trophy className="h-4.5 w-4.5" />
-                  </div>
-                  <span className="font-frygia text-xs sm:text-sm text-zinc-200 leading-snug">
-                    Live global leaderboard
-                  </span>
-                </div>
-
-                {/* 3. Mobile Friendly */}
-                <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl border border-purple-900/50 bg-[#0c0217]/70 backdrop-blur-sm transition-all duration-200 hover:border-purple-500/60 hover:bg-[#140426]">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-purple-500/40 bg-purple-500/10 text-purple-400 shrink-0">
-                    <Smartphone className="h-4.5 w-4.5" />
-                  </div>
-                  <span className="font-frygia text-xs sm:text-sm text-zinc-200 leading-snug">
-                    On mobile? Best in wallet's browser
-                  </span>
-                </div>
-
-                {/* 4. Token Requirement */}
-                <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-xl border border-purple-900/50 bg-[#0c0217]/70 backdrop-blur-sm transition-all duration-200 hover:border-emerald-500/60 hover:bg-[#140426]">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 shrink-0">
-                    <Coins className="h-4.5 w-4.5" />
-                  </div>
-                  <span className="font-frygia text-xs sm:text-sm text-zinc-200 leading-snug">
-                    Hold at least $5 in $RWD to play
-                  </span>
-                </div>
-
-              </div>
-
-              {/* Play Button CTA */}
-              <div className="mb-6 sm:mb-7">
-                <Magnetic strength={0.3} className="inline-block">
-                  <a
-                    href="https://rwdretrorun.netlify.app/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group relative inline-flex items-center justify-center p-[2px] rounded-none overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 focus-visible:outline-none"
-                  >
-                    {/* Rotating Neon Laser Border */}
-                    <div
-                      className="absolute -inset-[200%] animate-spin-neon pointer-events-none"
-                      style={{
-                        background: 'conic-gradient(from 0deg, transparent 0deg, transparent 200deg, #ec4899 250deg, #d946ef 290deg, #a855f7 330deg, #ffffff 350deg, #ec4899 360deg)',
-                      }}
-                      aria-hidden="true"
-                    />
-
-                    {/* Secondary Glow Layer */}
-                    <div
-                      className="absolute -inset-[200%] animate-spin-neon pointer-events-none blur-md opacity-80"
-                      style={{
-                        background: 'conic-gradient(from 0deg, transparent 0deg, transparent 180deg, #db2777 240deg, #c026d3 280deg, #9333ea 330deg, #ffffff 350deg, #ec4899 360deg)',
-                      }}
-                      aria-hidden="true"
-                    />
-
-                    {/* Static Ambient Neon Purple Border Fallback */}
-                    <div className="absolute inset-0 border border-fuchsia-500/50 rounded-none pointer-events-none" />
-
-                    {/* Inner Button Body */}
-                    <div className="relative z-10 rounded-none bg-[#090111] px-8 sm:px-10 py-3.5 sm:py-4 flex items-center justify-center gap-2 overflow-hidden transition-all duration-300 group-hover:bg-[#160228]">
-                      
-                      {/* Subtle hover neon background shimmer */}
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-r from-pink-600/20 via-purple-500/30 to-pink-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
-                        aria-hidden="true"
-                      />
-
-                      {/* Button Text in Frygia */}
-                      <span className="relative z-10 font-frygia font-black text-sm sm:text-base tracking-widest uppercase text-white group-hover:text-pink-100 drop-shadow-[0_0_10px_rgba(236,72,153,0.8)] transition-colors duration-300 flex items-center gap-2">
-                        Play Rewind Climber
-                        <ExternalLink className="h-4 w-4 text-pink-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
-                      </span>
-                    </div>
-                  </a>
-                </Magnetic>
-              </div>
-
-              {/* How it works Information Callout Card */}
-              <div className="rounded-xl border border-purple-900/60 bg-purple-950/20 p-3.5 sm:p-4 flex items-start gap-3 backdrop-blur-sm">
-                <Info className="h-5 w-5 text-fuchsia-400 shrink-0 mt-0.5" />
-                <p className="font-frygia text-xs sm:text-sm text-zinc-400 leading-relaxed">
-                  <span className="text-zinc-200 font-bold">How it works:</span> Each session costs 3 $RWD, sent straight to the Pool wallet that funds the in-game token to $RWD swap — current rate is 3 in-game coins per 1 $RWD, subject to change. Jupiter wallet support is still in the works.
-                </p>
-              </div>
-
-            </div>
-
+            <p className="text-zinc-300 font-frygia text-xs sm:text-sm leading-relaxed max-w-xl">
+              Choose your disc, spin up the retro CD player, and battle live or climb the global leaderboards. Click either CD disc to launch instantly in your browser!
+            </p>
           </div>
+
+          {/* Dual CD Games Grid (Side by Side) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 mb-6 sm:mb-8">
+            {GAMES_DATA.map((game, index) => (
+              <GameCdCard key={game.id} game={game} index={index} />
+            ))}
+          </div>
+
+          {/* Token Mechanics & How It Works Callout (Compact Glass Bar) */}
+          <div className="rounded-xl sm:rounded-2xl border border-purple-900/50 bg-[#0c0217]/75 p-3.5 sm:p-4 backdrop-blur-md shadow-[0_0_20px_rgba(147,51,234,0.12)] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-fuchsia-500/40 bg-fuchsia-500/10 text-fuchsia-400 shrink-0">
+                <Coins className="h-4 w-4" />
+              </div>
+              <p className="font-frygia text-xs text-zinc-300 leading-snug">
+                <span className="text-white font-bold">Play-To-Earn:</span> In-game coins earned from playing can be directly exchanged and withdrawn for $RWD tokens!
+              </p>
+            </div>
+
+            <div className="shrink-0">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 font-mono text-[11px] font-semibold">
+                <Coins className="h-3 w-3" />
+                <span>SOLANA ECOSYSTEM</span>
+              </span>
+            </div>
+          </div>
+
         </div>
       </section>
 
       {/* ========================================================================= */}
       {/* SECTION 5: REWIND PFP STUDIO (Tape Studio & Avatar Maker) */}
       {/* ========================================================================= */}
-      <section 
-        id="rewind-pfp" 
+      <section
+        id="rewind-pfp"
         className="relative z-20 w-full bg-gradient-to-b from-black via-[#0a0118] to-[#020005] border-t border-purple-950/60 py-20 sm:py-24 md:py-32 overflow-hidden select-none"
       >
         {/* Ambient atmospheric lighting */}
-        <div 
-          className="pointer-events-none absolute top-1/2 left-10 -translate-y-1/2 -z-0 h-[480px] w-[480px] rounded-full bg-fuchsia-600/15 blur-[160px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/2 left-10 -translate-y-1/2 -z-0 h-[480px] w-[480px] rounded-full bg-fuchsia-600/15 blur-[160px]"
+          aria-hidden="true"
         />
-        <div 
-          className="pointer-events-none absolute top-1/3 right-10 -translate-y-1/2 -z-0 h-[500px] w-[500px] rounded-full bg-purple-600/20 blur-[170px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/3 right-10 -translate-y-1/2 -z-0 h-[500px] w-[500px] rounded-full bg-purple-600/20 blur-[170px]"
+          aria-hidden="true"
         />
 
         <div className="relative z-10 max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-center">
-            
+
             {/* ==================== LEFT COLUMN: PFP COPY & FEATURES & CTA ==================== */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              
+
               {/* Section Tag */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-fuchsia-500/40 bg-fuchsia-950/30 text-fuchsia-300 font-mono text-xs uppercase tracking-widest mb-4 w-fit shadow-[0_0_15px_rgba(232,54,220,0.3)]">
                 <span className="h-2 w-2 rounded-full bg-[#ff2da8] animate-pulse" />
@@ -909,7 +831,7 @@ export default function Home() {
 
               {/* 4 Feature Bullet Cards (2x2 Grid) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 mb-8 sm:mb-10">
-                
+
                 {/* 1. PNG Export */}
                 <div className="flex items-start gap-3.5 p-4 rounded-2xl border border-purple-900/50 bg-[#0c0217]/80 backdrop-blur-sm transition-all duration-200 hover:border-fuchsia-500/70 hover:bg-[#140426] hover:shadow-[0_0_20px_rgba(232,54,220,0.2)]">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-fuchsia-500/40 bg-fuchsia-500/10 text-fuchsia-400 shrink-0 mt-0.5">
@@ -1002,10 +924,10 @@ export default function Home() {
 
                     {/* Inner Button Body */}
                     <div className="relative z-10 rounded-none bg-[#090111] px-8 sm:px-11 py-4 sm:py-4.5 flex items-center justify-center gap-2.5 overflow-hidden transition-all duration-300 group-hover:bg-[#160228]">
-                      
+
                       {/* Subtle hover neon background shimmer */}
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-r from-fuchsia-600/25 via-purple-500/30 to-fuchsia-600/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" 
+                      <div
+                        className="absolute inset-0 bg-gradient-to-r from-fuchsia-600/25 via-purple-500/30 to-fuchsia-600/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                         aria-hidden="true"
                       />
 
@@ -1023,16 +945,16 @@ export default function Home() {
 
             {/* ==================== RIGHT COLUMN: INTERACTIVE RETRO TV MOCKUP ==================== */}
             <div className="lg:col-span-5 flex justify-center items-center w-full">
-              <Link 
-                href="/pfp" 
+              <Link
+                href="/pfp"
                 className="group relative w-full max-w-[500px] flex flex-col items-center cursor-pointer block"
                 title="Launch Rewind My PFP Generator"
               >
-                
+
                 {/* Glow behind TV frame */}
-                <div 
-                  className="pointer-events-none absolute -inset-3 bg-gradient-to-tr from-fuchsia-600/30 via-purple-600/30 to-[#38c7bc]/30 blur-2xl rounded-3xl opacity-75 group-hover:opacity-100 transition-opacity duration-500" 
-                  aria-hidden="true" 
+                <div
+                  className="pointer-events-none absolute -inset-3 bg-gradient-to-tr from-fuchsia-600/30 via-purple-600/30 to-[#38c7bc]/30 blur-2xl rounded-3xl opacity-75 group-hover:opacity-100 transition-opacity duration-500"
+                  aria-hidden="true"
                 />
 
                 {/* Character Combo Header Overlay */}
@@ -1059,7 +981,7 @@ export default function Home() {
 
                 {/* Main TV Frame Container */}
                 <div className="relative w-full rounded-3xl border-2 border-purple-800/70 bg-gradient-to-br from-[#1b0a2c] via-[#10021c] to-[#08010e] p-5 sm:p-7 backdrop-blur-md shadow-[0_0_40px_rgba(232,54,220,0.35)] transition-all duration-500 group-hover:border-fuchsia-500 group-hover:shadow-[0_0_55px_rgba(232,54,220,0.6)]">
-                  
+
                   {/* Top LED Indicator */}
                   <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-widest text-zinc-400 mb-3 px-1">
                     <span className="flex items-center gap-2 text-fuchsia-400 font-bold">
@@ -1071,17 +993,17 @@ export default function Home() {
 
                   {/* Inner CRT Glitch Screen */}
                   <div className="relative aspect-[4/3] rounded-2xl bg-black overflow-hidden border border-purple-900/60 flex flex-col justify-between p-4 shadow-inner">
-                    
+
                     {/* Retro Scanlines */}
-                    <div 
-                      className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.4)_50%)] bg-[length:100%_4px] opacity-40 z-10" 
-                      aria-hidden="true" 
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.4)_50%)] bg-[length:100%_4px] opacity-40 z-10"
+                      aria-hidden="true"
                     />
 
                     {/* Ambient Glow & Glitch noise background */}
-                    <div 
-                      className="absolute inset-0 bg-gradient-to-tr from-fuchsia-950/60 via-purple-950/40 to-[#0c0217] opacity-80" 
-                      aria-hidden="true" 
+                    <div
+                      className="absolute inset-0 bg-gradient-to-tr from-fuchsia-950/60 via-purple-950/40 to-[#0c0217] opacity-80"
+                      aria-hidden="true"
                     />
 
                     {/* CRT OSD Top Info */}
@@ -1130,24 +1052,24 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* SECTION 6: HOW TO BUY $RWD */}
       {/* ========================================================================= */}
-      <section 
-        id="how-to-buy" 
+      <section
+        id="how-to-buy"
         className="relative z-20 w-full bg-gradient-to-b from-[#020005] via-[#090014] to-black border-t border-purple-950/60 py-20 sm:py-24 md:py-32 overflow-hidden select-none"
       >
         {/* Ambient atmospheric backdrop lighting */}
-        <div 
-          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-0 h-[550px] w-[1200px] rounded-full bg-fuchsia-600/10 blur-[190px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-0 h-[550px] w-[1200px] rounded-full bg-fuchsia-600/10 blur-[190px]"
+          aria-hidden="true"
         />
 
         <div className="relative z-10 max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
-          
+
           {/* Main Card Container */}
           <div className="relative w-full rounded-3xl border border-purple-900/50 bg-[#070010]/85 p-8 sm:p-12 lg:p-16 xl:p-20 backdrop-blur-md shadow-[0_0_70px_rgba(147,51,234,0.18)]">
-            
+
             {/* Section Heading: HOW TO BUY $RWD */}
             <div className="text-center mb-16 sm:mb-20">
-              <h2 
+              <h2
                 className="font-morton font-black uppercase tracking-wider text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-white select-none neon-text-glow leading-tight"
               >
                 HOW TO BUY $RWD
@@ -1157,19 +1079,19 @@ export default function Home() {
 
             {/* 4 Steps Horizontal Flow */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-6 xl:gap-8 items-start relative">
-              
+
               {/* ================= STEP 1: GET SOL ================= */}
               <div className="relative flex flex-col items-center text-center group">
-                
+
                 {/* Connecting Arrow (Desktop) */}
                 <div className="hidden lg:flex absolute -right-4 xl:-right-6 top-20 xl:top-24 -translate-y-1/2 z-20 pointer-events-none items-center justify-center">
-                  <svg 
-                    className="w-7 h-7 xl:w-9 xl:h-9 text-[#ff2da8] drop-shadow-[0_0_12px_#ff2da8] animate-pulse" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="3" 
-                    strokeLinecap="round" 
+                  <svg
+                    className="w-7 h-7 xl:w-9 xl:h-9 text-[#ff2da8] drop-shadow-[0_0_12px_#ff2da8] animate-pulse"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
                     strokeLinejoin="round"
                   >
                     <line x1="3" y1="12" x2="21" y2="12" />
@@ -1211,16 +1133,16 @@ export default function Home() {
 
               {/* ================= STEP 2: CONNECT WALLET ================= */}
               <div className="relative flex flex-col items-center text-center group">
-                
+
                 {/* Connecting Arrow (Desktop) */}
                 <div className="hidden lg:flex absolute -right-4 xl:-right-6 top-20 xl:top-24 -translate-y-1/2 z-20 pointer-events-none items-center justify-center">
-                  <svg 
-                    className="w-7 h-7 xl:w-9 xl:h-9 text-[#ff2da8] drop-shadow-[0_0_12px_#ff2da8] animate-pulse" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="3" 
-                    strokeLinecap="round" 
+                  <svg
+                    className="w-7 h-7 xl:w-9 xl:h-9 text-[#ff2da8] drop-shadow-[0_0_12px_#ff2da8] animate-pulse"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
                     strokeLinejoin="round"
                   >
                     <line x1="3" y1="12" x2="21" y2="12" />
@@ -1262,16 +1184,16 @@ export default function Home() {
 
               {/* ================= STEP 3: SWAP SOL FOR $RWD ================= */}
               <div className="relative flex flex-col items-center text-center group">
-                
+
                 {/* Connecting Arrow (Desktop) */}
                 <div className="hidden lg:flex absolute -right-4 xl:-right-6 top-20 xl:top-24 -translate-y-1/2 z-20 pointer-events-none items-center justify-center">
-                  <svg 
-                    className="w-7 h-7 xl:w-9 xl:h-9 text-[#ff2da8] drop-shadow-[0_0_12px_#ff2da8] animate-pulse" 
-                    viewBox="0 0 24 24" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    strokeWidth="3" 
-                    strokeLinecap="round" 
+                  <svg
+                    className="w-7 h-7 xl:w-9 xl:h-9 text-[#ff2da8] drop-shadow-[0_0_12px_#ff2da8] animate-pulse"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="3"
+                    strokeLinecap="round"
                     strokeLinejoin="round"
                   >
                     <line x1="3" y1="12" x2="21" y2="12" />
@@ -1313,7 +1235,7 @@ export default function Home() {
 
               {/* ================= STEP 4: $RWD (FINAL DESTINATION) ================= */}
               <div className="relative flex flex-col items-center text-center group">
-                
+
                 {/* Circle Container */}
                 <div className="relative mb-6">
                   <div className="relative flex h-36 w-36 sm:h-40 sm:w-40 xl:h-48 xl:w-48 items-center justify-center rounded-full border-[2.5px] border-[#d946ef] bg-black shadow-[0_0_25px_rgba(217,70,239,0.65)] transition-all duration-300 group-hover:scale-105 group-hover:border-[#ff2da8] group-hover:shadow-[0_0_35px_rgba(255,45,168,0.85)]">
@@ -1390,26 +1312,26 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* SECTION 7: THE FAIR LAUNCH PLEDGE & FAQ (Pledge Left | FAQ Right) */}
       {/* ========================================================================= */}
-      <section 
-        id="faq" 
+      <section
+        id="faq"
         className="relative z-20 w-full bg-gradient-to-b from-black via-[#080012] to-[#040008] border-t border-purple-950/60 py-20 sm:py-24 md:py-32 overflow-hidden select-none"
       >
         {/* Atmospheric ambient lighting */}
-        <div 
-          className="pointer-events-none absolute top-1/3 left-10 -translate-y-1/2 -z-0 h-[450px] w-[450px] rounded-full bg-fuchsia-600/10 blur-[160px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/3 left-10 -translate-y-1/2 -z-0 h-[450px] w-[450px] rounded-full bg-fuchsia-600/10 blur-[160px]"
+          aria-hidden="true"
         />
-        <div 
-          className="pointer-events-none absolute bottom-1/4 right-10 -z-0 h-[500px] w-[500px] rounded-full bg-purple-600/15 blur-[160px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute bottom-1/4 right-10 -z-0 h-[500px] w-[500px] rounded-full bg-purple-600/15 blur-[160px]"
+          aria-hidden="true"
         />
 
         <div className="relative z-10 max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-start">
-            
+
             {/* ==================== LEFT COLUMN: THE FAIR LAUNCH PLEDGE ==================== */}
             <div className="lg:col-span-5 flex flex-col justify-start">
-              
+
               {/* Heading (Clean White with Neon Glow, Matching Other Sections) */}
               <div className="mb-6">
                 <h2 className="font-morton font-black uppercase tracking-wider text-4xl sm:text-5xl lg:text-6xl text-white select-none neon-text-glow leading-none">
@@ -1431,7 +1353,7 @@ export default function Home() {
                 {PLEDGE_ITEMS.map((item, index) => {
                   const Icon = item.icon
                   return (
-                    <div 
+                    <div
                       key={index}
                       className="group rounded-2xl border border-purple-900/50 bg-[#0c0217]/85 p-5 backdrop-blur-sm transition-all duration-300 hover:border-fuchsia-500/70 hover:bg-[#130325] hover:shadow-[0_0_25px_rgba(232,54,220,0.2)] hover:-translate-y-0.5 flex items-start gap-4"
                     >
@@ -1455,7 +1377,7 @@ export default function Home() {
 
             {/* ==================== RIGHT COLUMN: FAQ ACCORDION ==================== */}
             <div className="lg:col-span-7 flex flex-col justify-start">
-              
+
               {/* Heading (Clean White with Neon Glow) */}
               <div className="mb-6">
                 <h2 className="font-morton font-black uppercase tracking-wider text-4xl sm:text-5xl lg:text-6xl text-white select-none neon-text-glow leading-tight">
@@ -1469,13 +1391,12 @@ export default function Home() {
                 {FAQ_ITEMS.map((item, index) => {
                   const isOpen = openFaq === index
                   return (
-                    <div 
+                    <div
                       key={index}
-                      className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
-                        isOpen 
-                          ? 'border-fuchsia-500/80 bg-[#130226]/90 shadow-[0_0_30px_rgba(232,54,220,0.22)]' 
-                          : 'border-purple-900/50 bg-[#0c0217]/80 hover:border-purple-700 hover:bg-[#100120]'
-                      }`}
+                      className={`rounded-2xl border transition-all duration-300 overflow-hidden ${isOpen
+                        ? 'border-fuchsia-500/80 bg-[#130226]/90 shadow-[0_0_30px_rgba(232,54,220,0.22)]'
+                        : 'border-purple-900/50 bg-[#0c0217]/80 hover:border-purple-700 hover:bg-[#100120]'
+                        }`}
                     >
                       <button
                         type="button"
@@ -1486,15 +1407,14 @@ export default function Home() {
                         <span className="font-morton font-extrabold text-base sm:text-lg lg:text-xl text-white tracking-wide leading-snug">
                           {item.q}
                         </span>
-                        
-                        <motion.div 
+
+                        <motion.div
                           animate={{ rotate: isOpen ? 45 : 0 }}
                           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                          className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-colors duration-300 shrink-0 ${
-                            isOpen 
-                              ? 'border-fuchsia-400 bg-fuchsia-500/20 text-fuchsia-300 shadow-[0_0_12px_rgba(232,54,220,0.5)]' 
-                              : 'border-purple-800 bg-purple-950/40 text-purple-300'
-                          }`}
+                          className={`flex h-8 w-8 items-center justify-center rounded-lg border transition-colors duration-300 shrink-0 ${isOpen
+                            ? 'border-fuchsia-400 bg-fuchsia-500/20 text-fuchsia-300 shadow-[0_0_12px_rgba(232,54,220,0.5)]'
+                            : 'border-purple-800 bg-purple-950/40 text-purple-300'
+                            }`}
                         >
                           <Plus className="h-4.5 w-4.5" />
                         </motion.div>
@@ -1506,16 +1426,16 @@ export default function Home() {
                           <motion.div
                             key="content"
                             initial={{ height: 0, opacity: 0 }}
-                            animate={{ 
-                              height: 'auto', 
+                            animate={{
+                              height: 'auto',
                               opacity: 1,
                               transition: {
                                 height: { duration: 0.35, ease: [0.04, 0.62, 0.23, 0.98] },
                                 opacity: { duration: 0.25, delay: 0.08 }
                               }
                             }}
-                            exit={{ 
-                              height: 0, 
+                            exit={{
+                              height: 0,
                               opacity: 0,
                               transition: {
                                 height: { duration: 0.3, ease: [0.04, 0.62, 0.23, 0.98] },
@@ -1547,26 +1467,26 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* SECTION 8: SOCIAL SECTION (Left: X & Telegram Cards | Right: Big Kid Image) */}
       {/* ========================================================================= */}
-      <section 
-        id="social" 
+      <section
+        id="social"
         className="relative z-20 w-full bg-gradient-to-b from-[#040008] via-[#090014] to-black border-t border-purple-950/60 py-20 sm:py-24 md:py-32 overflow-hidden select-none"
       >
         {/* Ambient background lighting */}
-        <div 
-          className="pointer-events-none absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 -z-0 h-[500px] w-[800px] rounded-full bg-purple-600/15 blur-[170px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 -z-0 h-[500px] w-[800px] rounded-full bg-purple-600/15 blur-[170px]"
+          aria-hidden="true"
         />
-        <div 
-          className="pointer-events-none absolute top-1/2 right-10 -translate-y-1/2 -z-0 h-[500px] w-[500px] rounded-full bg-fuchsia-600/20 blur-[150px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute top-1/2 right-10 -translate-y-1/2 -z-0 h-[500px] w-[500px] rounded-full bg-fuchsia-600/20 blur-[150px]"
+          aria-hidden="true"
         />
 
         <div className="relative z-10 max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-center">
-            
+
             {/* ==================== LEFT COLUMN: X & TELEGRAM CARDS ==================== */}
             <div className="lg:col-span-7 flex flex-col justify-center">
-              
+
               {/* Heading */}
               <div className="mb-8 sm:mb-10">
                 <h2 className="font-morton font-black uppercase tracking-wider text-4xl sm:text-5xl lg:text-6xl text-white select-none neon-text-glow leading-tight">
@@ -1580,7 +1500,7 @@ export default function Home() {
 
               {/* 2 Social Cards */}
               <div className="space-y-5 sm:space-y-6">
-                
+
                 {/* CARD 1: X (TWITTER) */}
                 <a
                   href="https://x.com/RewindStatic78"
@@ -1673,13 +1593,13 @@ export default function Home() {
 
             {/* ==================== RIGHT COLUMN: BIG KID SOCIAL IMAGE ==================== */}
             <div className="lg:col-span-5 relative flex items-center justify-center h-full min-h-[420px] lg:min-h-[580px]">
-              
+
               {/* Vibrant Atmospheric Purple Ambient Glow behind the kid */}
-              <div 
-                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-0 h-[480px] w-[480px] rounded-full bg-fuchsia-600/30 blur-[140px] animate-pulse" 
-                aria-hidden="true" 
+              <div
+                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-0 h-[480px] w-[480px] rounded-full bg-fuchsia-600/30 blur-[140px] animate-pulse"
+                aria-hidden="true"
               />
-              
+
               <div className="relative group w-full max-w-[460px] lg:max-w-none flex items-center justify-center">
                 <Image
                   src="/social-kid.png"
@@ -1700,16 +1620,16 @@ export default function Home() {
       {/* FOOTER */}
       {/* ========================================================================= */}
       <footer className="relative z-20 w-full bg-black border-t border-purple-950/80 py-12 sm:py-16 overflow-hidden select-none">
-        
+
         {/* Ambient bottom glow */}
-        <div 
-          className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 -z-0 h-[250px] w-[800px] rounded-full bg-fuchsia-600/10 blur-[160px]" 
-          aria-hidden="true" 
+        <div
+          className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 -z-0 h-[250px] w-[800px] rounded-full bg-fuchsia-600/10 blur-[160px]"
+          aria-hidden="true"
         />
 
         <div className="relative z-10 max-w-[1560px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8 sm:gap-10 pb-10 border-b border-purple-900/40">
-            
+
             {/* Left: Logo Text with Tagline */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left gap-3">
               <Image
